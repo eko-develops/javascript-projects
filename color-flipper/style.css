@@ -1,0 +1,17 @@
+*{
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    background-color: tomato;
+    align-items: center;
+}
+
+
+.current-colour-text{
+    color: white;
+}
