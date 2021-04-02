@@ -1,49 +1,78 @@
-const getUserData = () => {
-        const data = fetch('https://randomuser.me/api/')
+//Get the container for the user cards
+const container = document.querySelector('.card-container');
+
+/*
+This function is used to fetch the user data from the API.
+Depending on the resolution of the promise, a function will
+be called to either display the fetched data or show an error
+message for a failed request/rejected promise.
+*/
+const fetchUser = () => {
+    //Free open-source API for generating random user data
+        fetch('https://randomuser.me/api/')
         .then( response => {
-            return response.json();
+            return response.json(); //Parse the response to json
         })
-        .then( data => {
-            const { results } = data;
+        .then( data => {    //This is the parsed data
+            const { results } = data;   //Destructure the data into results object
+
             //We do not need to spread the array index because it is already an object.
             //Just assign the index of the array (the object) to a variable for easy handling.
             // const { ...result} = results[0];
             const result = results[0];
-            return result;
+
+            displayUser(result);    //Display the result
         })
+        //If theres an error lets catch it
         .catch( err => {
-            return `FETCH ERROR IN GETUSERDATA(): ${err}`;
+            //We will also pass the 'err' object for debugging purposes.
+            displayError(err);
         })
-        return data;
 }
 
-const displayUser = () => {
-    const fetchData = getUserData();
-    // console.log(fetchData);
-    fetchData.then( data => {
-        console.log(data);
-        
-        const { picture, name, location, email, phone } = data;
+/*
+This function handles the success request/data from fetchData().
+*/
+const displayUser = (result) => {
 
-        const userImg = document.querySelector('.user-image');
-        const userName = document.querySelector('.user-name');
-        const userLocation = document.querySelector('.location');
-        const userEmail = document.querySelector('.email');
-        const userPhone = document.querySelector('.phone');
-        
+    //Get the data we need by destructuring the result object
+    const { picture, name, location, email, phone } = result;
+
+        //Create DOM elements and add properties
+        const userImg = document.createElement('img');
+        userImg.classList.add = '.user-image'
         userImg.src = picture.large;
         
+        const userName = document.createElement('h1');
+        userName.classList.add('.user-name');
         userName.textContent = `${name.first} ${name.last}`;
 
+        const userLocation = document.createElement('span');
+        userLocation.classList.add('.location');
         userLocation.textContent = `${location.city}, ${location.state}, ${location.country}`;
         
-
+        const userEmail = document.createElement('span');
+        userEmail.classList.add('.email');
         userEmail.textContent = email;
 
+        const userPhone = document.createElement('span');
+        userPhone.classList.add('.phone');
         userPhone.textContent = `Tel: ${phone}`;
-    })
+
+        container.append(userImg, userName, userLocation, userEmail, userPhone);
 }
 
+/*
+This function handles the failed request from fetchData().
+*/
+const displayError = (err) => {
+    const span = document.createElement('span');    //Create a span
+    span.textContent = 'An error has occured while fetching data..';    //Add the text
+    span.classList.add('error-message');    //Add the class
+    
+    container.append(span);     //Append the span to the card container
+    console.log(err);   //Show error in console during development
+}
 
-
-window.addEventListener('DOMContentLoaded', displayUser);
+//When DOM has finished loading run fetchUser().
+window.addEventListener('DOMContentLoaded', fetchUser);
