@@ -12,6 +12,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color:white;
 }
 
 .card-container{
@@ -19,6 +21,7 @@ body{
     width: 500px;
     border-radius: 1rem;
     padding: 1rem;
+    height: 350px;
 
     display:flex;
     justify-content: center;
@@ -32,4 +35,9 @@ body{
 
 .error-message{
     color:red;
+}
+
+.next-button{
+    padding: 0.2rem 1.5rem;
+    margin-top: 0.8rem;
 }
