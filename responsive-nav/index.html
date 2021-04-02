@@ -6,19 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Nav | By EKO</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-</head>
+     <script src="https://kit.fontawesome.com/6ce688f722.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="style.css">
+
+    </head>
 <body>
     <header>
         <nav>
-            <span class="brand">eko</span>
+            <span class="brand">eko develops</span>
+            <i class="toggle-menu fas fa-bars"></i>
+            
             <ul class="main-navigation">
                 <li>
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#">About Us</a>
+                    <a href="#">About Me</a>
                 </li>
                 <li>
                     <a href="#">Support</a>
@@ -26,6 +32,32 @@
                 <button type="button">Get a Quote</button>
             </ul>
         </nav>
+        <div class="mobile-container">
+            <div class="hidden-mobile">
+                <ul class="mobile-menu">
+                    <li>
+                       <a href="#">Home</a>
+                   </li>
+                   <li>
+                       <a href="#">About Me</a>
+                   </li>
+                   <li>
+                       <a href="#">Support</a>
+                   </li>
+                   <button type="button">Get a Quote</button>
+               </ul>
+            </div>
+        </div>
+        
+        
+
     </header>
+
+    <div class="landing">
+        <h1>Responsive Nav</h1>
+        <p>This is my first responsive nav using Javascript.</p>
+    </div>
+
+<script src="app.js"></script>
 </body>
 </html>
