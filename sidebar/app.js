@@ -9,8 +9,9 @@ const toggleSidebar = () => {
 
 toggleButton.addEventListener('click', toggleSidebar);
 
-// window.addEventListener('click', (e) => {
-//     if (e.target !== sidebar && e.target !== toggleButton){
-//         sidebar.style.display = 'none';
-//     }
-// })
+window.addEventListener('click' , (e) => {
+    if(e.target !== document.querySelector('.sidebar') && e.target !== document.querySelector('.header-nav') && e.target !== document.querySelector('.toggle-menu')){
+        document.querySelector('.sidebar').classList.add('sidebar-toggle');
+    }
+})
+
